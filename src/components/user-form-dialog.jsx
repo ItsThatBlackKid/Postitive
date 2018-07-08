@@ -10,7 +10,7 @@ import {withStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/es/TextField/TextField";
 import Collapse from "@material-ui/core/es/Collapse/Collapse";
 import {ACCOUNTS} from "../config/Api"
-import {login} from "../utils/Auth";
+import {login, register} from "../utils/Auth";
 import {regClient} from "../utils/ApiClient";
 
 const styles = {
@@ -78,15 +78,12 @@ class UserFormDialog extends Component {
             this.setState({expanded: true});
         } else {
             //TODO: register user information
-            regClient().post(
-                ACCOUNTS, {
-                    "username": this.state.username,
-                    "email": this.state.email,
-                    "password": this.state.password
+            register(this.state.username, this.state.email, this.state.password).then(
+                () => {
+                    this.setState({open: false});
+                    this.handleLogin()
                 }
-            ).then((res) => {
-                this.setState({open: false})
-            })
+            );
         }
 
     }

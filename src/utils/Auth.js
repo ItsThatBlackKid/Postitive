@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import store from '../store';
 import {setToken, setUser} from "../actions";
-import {LOGIN} from '../config/Api';
+import {LOGIN, ACCOUNTS} from '../config/Api';
 import {regClient} from "./ApiClient";
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -30,6 +30,18 @@ export function login(username, password) {
             }
             throw error;
         });
+}
+
+export function register(username, email, password){
+    return regClient().post(
+        ACCOUNTS, {
+            "username": username,
+            "email": email,
+            "password": password,
+        }
+    ).catch((error) => {
+        console.log(error)
+    })
 }
 
 export function isLoggedIn() {

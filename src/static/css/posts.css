@@ -1,0 +1,27 @@
+* {
+    color: black;
+}
+
+
+#post-writer{
+    margin: 0 auto;
+    width: 648px;
+    align-content: center;
+}
+
+.post {
+    margin-bottom: 10px;
+    width: 646px;
+}
+
+textarea {
+    height: 300px;
+}
+
+.vote-action {
+    width: 200px;
+}
+
+.vote-action > * {
+    display: inline-flex;
+}
